@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Results</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Survey Results</h2>
+    
+    <h3>Question 1:</h3>
+    <table>
+        <tr>
+            <th>Option</th>
+            <th>Count</th>
+        </tr>
+        <tr>
+            <td>Very Satisfied</td>
+            <td id="q1_option1"></td>
+        </tr>
+        <tr>
+            <td>Satisfied</td>
+            <td id="q1_option2"></td>
+        </tr>
+        <tr>
+            <td>Neutral</td>
+            <td id="q1_option3"></td>
+        </tr>
+        <tr>
+            <td>Dissatisfied</td>
+            <td id="q1_option4"></td>
+        </tr>
+        <tr>
+            <td>Very Dissatisfied</td>
+            <td id="q1_option5"></td>
+        </tr>
+    </table>
+
+    <h3>Question 3:</h3>
+    <table>
+        <tr>
+            <th>Option</th>
+            <th>Count</th>
+        </tr>
+        <tr>
+            <td>Most recently used</td>
+            <td id="q3_option1"></td>
+        </tr>
+        <tr>
+            <td>Alphabetically A-Z</td>
+            <td id="q3_option2"></td>
+        </tr>
+        <tr>
+            <td>Pin favorites at the top of the list</td>
+            <td id="q3_option3"></td>
+        </tr>
+        <tr>
+            <td>Most accessed applications</td>
+            <td id="q3_option4"></td>
+        </tr>
+    </table>
+
+    <h3>Question 4:</h3>
+    <table>
+        <tr>
+            <th>Option</th>
+            <th>Count</th>
+        </tr>
+        <tr>
+            <td>Most recently used</td>
+            <td id="q4_option1"></td>
+        </tr>
+        <tr>
+            <td>Alphabetically A-Z</td>
+            <td id="q4_option2"></td>
+        </tr>
+        <tr>
+            <td>Pin favorites at the top of the list</td>
+            <td id="q4_option3"></td>
+        </tr>
+        <tr>
+            <td>Most accessed applications</td>
+            <td id="q4_option4"></td>
+        </tr>
+    </table>
+
+    <script>
+        // Function to get the value from local storage and display it in the table
+        function displayResults(questionNumber) {
+            var options = ["Option 1", "Option 2", "Option 3", "Option 4"];
+            options.forEach(function(option, index) {
+                var count = localStorage.getItem("Q" + questionNumber + "_" + option);
+                document.getElementById("q" + questionNumber + "_option" + (index + 1)).textContent = count || 0;
+            });
+
+            document.getElementById("q1_option5").textContent = localStorage.getItem("Q1_Option 1");
+        }
+
+        // Call displayResults function for each question
+        displayResults(1);
+        displayResults(3);
+        displayResults(4);
+    </script>
+</body>
+</html>

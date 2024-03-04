@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 4 - Survey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        // Initialize index and pics array
+        var index = 0;
+        const pics = ["pics/uozone-homepage.png", "pics/uozone-services.png", "pics/uozone-academics.png", "pics/uozone-finances.png", "pics/uozone-applications.png"];
+        
+        // Function to change the image
+        function myFunction(i) {
+            index = index + i;
+            if (index == -1) {
+                index = 4;
+            } else if (index == 5) {
+                index = 0;
+            }
+            document.getElementById("img").src = pics[index];
+        }
+
+        // Function to handle clicking the "Next" button
+        function handleNext() {
+            var selectedCheckboxes = document.querySelectorAll('input[name="selection[]"]:checked');
+            if (selectedCheckboxes.length > 0) {
+                selectedCheckboxes.forEach(function(checkbox) {
+                    var checkboxValue = checkbox.value;
+                    if (localStorage.getItem("Q4_" + checkboxValue) == null) {
+                        localStorage.setItem("Q4_" + checkboxValue, 1);
+                    } else {
+                        localStorage.setItem("Q4_" + checkboxValue, parseInt(localStorage.getItem("Q4_" + checkboxValue)) + 1);
+                    }
+                });
+                window.location.href = "q5.html";
+            } else {
+                alert("Please select at least one option before proceeding.");
+            }
+        }
+    </script>
+
+    <!--Question 4-->
+    <div class="question">
+        <div class="q-title">Question 4/5</div>
+        <div class="image-container">
+            <img class="img" id="img" src="pics/uozone-homepage.png" style="width:100%">
+        </div>
+
+        <label for="checkboxQuestion">What pages do you most commonly use in uoZone?</label>
+        <div class="option">
+            <input type="checkbox" id="checkbox1" name="selection[]" value="Option 1">
+            <label for="checkbox1">Home</label>
+        </div>
+        <div class="option">
+            <input type="checkbox" id="checkbox2" name="selection[]" value="Option 2">
+            <label for="checkbox2">Services for you</label>
+        </div>
+        <div class="option">
+            <input type="checkbox" id="checkbox3" name="selection[]" value="Option 3">
+            <label for="checkbox3">Academics and courses</label>
+        </div>
+        <div class="option">
+            <input type="checkbox" id="checkbox4" name="selection[]" value="Option 4">
+            <label for="checkbox4">Finances and jobs</label>
+        </div>
+        <div class="option">
+            <input type="checkbox" id="checkbox5" name="selection[]" value="Option 5">
+            <label for="checkbox5">Applications</label>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <a href="q3.html"> <button>Previous</button> </a>
+        <button onclick="handleNext()">Next</button>
+    </div>
+    
+    <p class="signature">Website designed by Zanou Rih, Looti Kris and Jenson Wu</p>
+</body>
+</html>
